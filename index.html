@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Happy Birthday My Love</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@400;600&display=swap');
+
+    body {
+      margin: 0;
+      font-family: 'Montserrat', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      color: #fff;
+      text-align: center;
+      background: linear-gradient(270deg, #ff9a9e, #fad0c4, #fad0c4, #fbc2eb, #a6c1ee);
+      background-size: 1200% 1200%;
+      animation: gradientShift 20s ease infinite;
+    }
+
+    @keyframes gradientShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .container {
+      background: rgba(255,255,255,0.15);
+      backdrop-filter: blur(10px);
+      border-radius: 20px;
+      padding: 30px;
+      max-width: 600px;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+    }
+
+    h1 {
+      font-family: 'Great Vibes', cursive;
+      font-size: 3rem;
+      margin-bottom: 20px;
+      color: #fff;
+    }
+
+    p {
+      font-size: 1.2rem;
+      line-height: 1.6;
+      margin: 15px 0;
+    }
+
+    input {
+      padding: 10px 15px;
+      border: none;
+      border-radius: 10px;
+      font-size: 1rem;
+      margin-top: 15px;
+    }
+
+    button {
+      margin: 10px;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 20px;
+      background: #ff4b6e;
+      color: white;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background: #ff1e50;
+    }
+
+    .hidden { display: none; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div id="intro">
+      <h1>Happy Birthday 💖</h1>
+      <p>Type your name to unlock your surprise ✨</p>
+      <input type="text" id="nameInput" placeholder="Enter your name..." />
+      <button onclick="start()">Enter</button>
+    </div>
+
+    <div id="content" class="hidden">
+      <h1 id="message">Happy Birthday, My Love ❤️</h1>
+      <p id="letter">On this special day, I just want you to know how much you mean to me.</p>
+      <div>
+        <button onclick="prevMessage()">⬅ Prev</button>
+        <button onclick="nextMessage()">Next ➡</button>
+      </div>
+      <button onclick="toggleMusic()">🎶 Toggle Music</button>
+    </div>
+  </div>
+
+  <audio id="bgMusic" loop>
+    <source src="romantic-song.mp3" type="audio/mpeg">
+  </audio>
+
+  <script>
+    const messages = [
+      "Happy Birthday, My Love ❤️",
+      "Every moment with you feels like magic ✨",
+      "You are my best friend, my partner, my everything 💍",
+      "I’m so grateful for your love 💕",
+      "Today is all about YOU, my Queen 👑",
+      "Forever & Always, I’m yours 💖"
+    ];
+    let index = 0;
+
+    function start() {
+      const name = document.getElementById("nameInput").value;
+      if (!name) return alert("Please enter your name 💕");
+      document.getElementById("intro").classList.add("hidden");
+      document.getElementById("content").classList.remove("hidden");
+      document.getElementById("letter").innerText = `Dear ${name}, you are my sunshine on the darkest days, my comfort when I need love, and my greatest blessing. 💌`;
+      document.getElementById("bgMusic").play();
+    }
+
+    function nextMessage() {
+      index = (index + 1) % messages.length;
+      document.getElementById("message").innerText = messages[index];
+    }
+
+    function prevMessage() {
+      index = (index - 1 + messages.length) % messages.length;
+      document.getElementById("message").innerText = messages[index];
+    }
+
+    function toggleMusic() {
+      const music = document.getElementById("bgMusic");
+      if (music.paused) {
+        music.play();
+      } else {
+        music.pause();
+      }
+    }
+  </script>
+</body>
+</html>
